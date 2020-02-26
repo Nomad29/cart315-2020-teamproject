@@ -10,30 +10,35 @@ https://www.youtube.com/watch?v=UeqfHkfPNh4
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// Unity SceneManagement is important to include if there is a function that called a change in scenes.
 using UnityEngine.SceneManagement;
 
 public class ItemGravity : MonoBehaviour
 {
     public GameObject Planet;
+    // Variable made available for all scripts to use
     public static int Score;
 
+    // Related to the base gravity script that we do not need to modify.
     float gravity = 100;
     bool OnGround = false;
-
     float distanceToGround;
     Vector3 Groundnormal;
 
+    // Gets the item RigidBody. They all need a RigidBody installed on them in order to work.
     private Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        // Precaution to take for bugs by constraining the player's Rigidbody rotation
         rb.freezeRotation = true;
+        // Starting score of zero
         Score = 0;
     }
 
-    // Update is called once per frame
+    // The Update() function does not have to be modified, its the base of the gravity for the items that hold this script
     void Update()
     {
 
@@ -67,21 +72,22 @@ public class ItemGravity : MonoBehaviour
 
         Quaternion toRotation = Quaternion.FromToRotation(transform.up, Groundnormal) * transform.rotation;
         transform.rotation = toRotation;
-
     }
 
+    // Win conditions goes here
     public void OnTriggerExit(Collider other)
     {
         if (other.gameObject == Planet)
         {
             // Counter for the ships when they exit the planet after being pushed
-            Score++;
-            print("Score= " + Score);
+            Score++; // simpler than +1
+            print("Score= " + Score); // Checks in the console if the score is working
         }
 
         // If all enemies are repelled, call the Win screen
         if (Score == 5)
         {
+            // Goes to the 'Win' screen
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         }

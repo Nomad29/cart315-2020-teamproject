@@ -7,6 +7,10 @@ https://www.youtube.com/watch?v=UeqfHkfPNh4
 
 ******************/
 
+
+// *** The PlaceHolder is important if you want to keep the smooth view angle from afar as it is in my third prototype.
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +23,7 @@ public class PlayerPlaceholder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // Smooth positioning
+        // Smooth positioning of the camera inside the planet
         transform.position = Vector3.Lerp(transform.position, Player.transform.position, 0.1f);
         Vector3 gravDirection = (transform.position - Planet.transform.position).normalized;
 

@@ -7,6 +7,10 @@ https://www.youtube.com/watch?v=UeqfHkfPNh4
 
 ******************/
 
+
+// *** This code is for moving the camera around the player when clicking on the left mouse button.
+
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
