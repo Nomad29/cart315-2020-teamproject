@@ -28,6 +28,8 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
 
     /*********************SNEK VARIABLES**************************/
+    /*********************SNEK VARIABLES**************************/
+    /*********************SNEK VARIABLES**************************/
 
     [SerializeField] //opposite to hideininspector
     private GameObject tailPrefab; //add this prefab to the snake when it eats the fruit
@@ -38,6 +40,28 @@ public class Player : MonoBehaviour
 
     private bool create_Node_At_Tail; //to tell if you need to add tail or not
 
+    [HideInInspector]
+    public enum PlayerDirection//indicate the snake's direction with numbers
+    {
+        LEFT = 0,
+        UP = 1,
+        RIGHT = 2,
+        DOWN = 3,
+        COUNT = 4
+    } //player direction
+
+    [HideInInspector] //hide the variable from the inspector
+    public PlayerDirection directionH;
+    [HideInInspector] //hide the variable from the inspector
+    public PlayerDirection directionV;
+
+    public GameObject curBodyPart;
+    public GameObject prevBodyPart;
+    public float distance;
+    public float mindistance = 0.25f;
+
+    /*******************END SNEK VARIABLES************************/
+    /*******************END SNEK VARIABLES************************/
     /*******************END SNEK VARIABLES************************/
 
     // Start is called before the first frame update
@@ -52,7 +76,7 @@ public class Player : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         Move();
 
@@ -71,10 +95,12 @@ public class Player : MonoBehaviour
 
         nodes.Add(transform.GetChild(0).gameObject);//child index 0 of the GameObject
         nodes.Add(transform.GetChild(1).gameObject);
-        nodes.Add(transform.GetChild(2).gameObject);
-        nodes.Add(transform.GetChild(3).gameObject);
 
         head_Body = nodes[0];//the first child element is the snakehead.
+        for(int i=1; i<3; i++)
+        {
+            AddBodyPart();
+        }
 
     }
 
@@ -86,8 +112,38 @@ public class Player : MonoBehaviour
     void Move()
     {
         // Gets the basis of the player's movements
-        float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed; // if there is no horizontal input, x = 0
-        float z = Input.GetAxis("Vertical") * Time.deltaTime * speed; // if there is no vertical input, z = 0
+        float x = 0f;//horizontal placement
+        float z = 0f;//vertical placement
+
+        //old x and z:         
+        //float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed; // if there is no horizontal input, x = 0
+        //float z = Input.GetAxis("Vertical") * Time.deltaTime * speed; // if there is no vertical input, z = 0
+
+        directionH = PlayerDirection.RIGHT;
+        directionV = PlayerDirection.UP;
+
+        switch (directionH)
+        {
+            case PlayerDirection.RIGHT:
+                x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+                break;
+
+            case PlayerDirection.LEFT:
+                x = -1 * Time.deltaTime * speed;
+                break;
+        }
+
+        switch (directionV)
+        {
+            case PlayerDirection.UP:
+                z = 1 * Time.deltaTime * speed;
+                Debug.Log("directionV");
+                break;
+
+            case PlayerDirection.DOWN:
+                z = -1 * Time.deltaTime * speed;
+                break;
+        }
 
         Vector3 parentPos = head_Body.transform.position;//take head's position as the first parent position
         Vector3 prevPosition;//variable for preceding node's position. Created so that changes will not affect the value of parentPos.
@@ -99,7 +155,7 @@ public class Player : MonoBehaviour
 
         //
         // Player inputs by rotation. Can be changed to translation I think because as the prototype is now, the player cannot move left or right without moving foward or backyard also.
-        //Change character direction by rotation: doesn't actually move the character around (as it affects the y axis) but rather the rotation range
+        // Change character direction by rotation: doesn't actually move the character around (as it affects the y axis) but rather the rotation range
         // If the 'D' key or RightArrow is pressed
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -113,23 +169,43 @@ public class Player : MonoBehaviour
             // Makes sures the inputs gets the same number or the movements will be unbalanced.
             transform.Rotate(0, -150 * Time.deltaTime, 0);
         }
-        Debug.Log(nodes.Count);
-        if (x > 0 || z > 0)
-            //update node position only if object is moving
+
+        for (int i = 1; i < nodes.Count; i++)
         {
-            Debug.Log("oops");
-            for (int i = 1; i < nodes.Count; i++)
+            curBodyPart = nodes[i];
+            prevBodyPart = nodes[i - 1];
+
+            //distance = Vector3.Distance(prevBodyPart.transform.position, curBodyPart.transform.position);
+            //Debug.Log(distance);
+            Vector3 newpos = prevBodyPart.transform.position;
+
+            //newpos.y = prevBodyPart.transform.position.y;
+
+            float T = Time.deltaTime * distance / mindistance * speed;
+
+            if (T>0.5f)
             {
-                
-                prevPosition = nodes[i].transform.position;//the current node's position become the next previous position
-
-                nodes[i].transform.position = parentPos;//the current node takes on the parent position...
-                Debug.Log(i + "position" + nodes[i].transform.position);
-                parentPos = prevPosition;//...and its position becomes the next parent position
-
+                T = 0.5f;
+                curBodyPart.transform.position = Vector3.Slerp(curBodyPart.transform.position, newpos, T);
+                curBodyPart.transform.rotation = Quaternion.Slerp(curBodyPart.transform.rotation, prevBodyPart.transform.rotation, T);
             }
+
+            //prevPosition = nodes[i].transform.position;//the current node's position become the next previous position
+
+            //nodes[i].transform.position = parentPos;//the current node takes on the parent position...
+            //Debug.Log(i + "position" + nodes[i].transform.position);
+            //parentPos = prevPosition;//...and its position becomes the next parent position
         }
 
+        //AddBodyPart();
+    }
+
+    public void AddBodyPart()
+    {
+        GameObject newpart = (Instantiate(tailPrefab, nodes[nodes.Count - 1].transform.position, nodes[nodes.Count - 1].transform.rotation));
+        newpart.transform.SetParent(transform,true);
+        nodes.Add(newpart);
+        Debug.Log(newpart.transform.position);
     }
 
     void GroundControl()
