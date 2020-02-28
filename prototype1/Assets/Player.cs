@@ -27,39 +27,113 @@ public class Player : MonoBehaviour
     // Gets the player's RigidBody. It needs a RigidBody installed on it in order to work.
     private Rigidbody rb;
 
+    /*********************SNEK VARIABLES**************************/
+
+    [SerializeField] //opposite to hideininspector
+    private GameObject tailPrefab; //add this prefab to the snake when it eats the fruit
+
+    private GameObject head_Body; //the GameObject corresponding to the head (it's the robot character for the moment)
+
+    private List<GameObject> nodes; //every part of the snake's body
+
+    private bool create_Node_At_Tail; //to tell if you need to add tail or not
+
+    /*******************END SNEK VARIABLES************************/
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         // Precaution to take for bugs by constraining the player's Rigidbody rotation
         rb.freezeRotation = true;
+
+        InitSnakeNodes();//set up the snake
+        InitPlayer();//set up the snake's parts' placement according to the snake's direction
     }
 
     // Update is called once per frame
     void Update()
     {
+        Move();
+
+
+
+        // These next parts of the Update() function does not have to be modified, its the base of the gravity for the items that hold this script
+        GroundControl();
+        GravityAndRotation();
+
+
+    }
+
+    void InitSnakeNodes()//get all the snake parts
+    {
+        nodes = new List<GameObject>();//Store all of them into the nodes list
+
+        nodes.Add(transform.GetChild(0).gameObject);//child index 0 of the GameObject
+        nodes.Add(transform.GetChild(1).gameObject);
+        nodes.Add(transform.GetChild(2).gameObject);
+        nodes.Add(transform.GetChild(3).gameObject);
+
+        head_Body = nodes[0];//the first child element is the snakehead.
+
+    }
+
+    void InitPlayer()
+    {
+
+    }
+
+    void Move()
+    {
         // Gets the basis of the player's movements
-        float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
-        float z = Input.GetAxis("Vertical") * Time.deltaTime * speed;
+        float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed; // if there is no horizontal input, x = 0
+        float z = Input.GetAxis("Vertical") * Time.deltaTime * speed; // if there is no vertical input, z = 0
+
+        Vector3 parentPos = head_Body.transform.position;//take head's position as the first parent position
+        Vector3 prevPosition;//variable for preceding node's position. Created so that changes will not affect the value of parentPos.
+
         // Lets the player move on the planet perfectly in 3D. Without it, the planet would walk on the sphere like its planar.
         transform.Translate(x, 0, z);
+        // update the snake's global position
+        //rb.transform.position = head_Body.transform.position;
 
+        //
         // Player inputs by rotation. Can be changed to translation I think because as the prototype is now, the player cannot move left or right without moving foward or backyard also.
-        // If the 'D' key is pressed
-        if (Input.GetKey(KeyCode.D))
+        //Change character direction by rotation: doesn't actually move the character around (as it affects the y axis) but rather the rotation range
+        // If the 'D' key or RightArrow is pressed
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // The only thing modifiable in this string is the number '150'. Going higher will make the player's avatar will do a bigger rotation while smaller will to the opposite.
             transform.Rotate(0, 150 * Time.deltaTime, 0);
         }
-        // If the 'A' key is pressed
-        if (Input.GetKey(KeyCode.A))
+        // If the 'A' key or LeftArrow is pressed
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             // The only thing modifiable in this string is the number '-150'. Going higher will make the player's avatar will do a bigger rotation while smaller will to the opposite.
             // Makes sures the inputs gets the same number or the movements will be unbalanced.
             transform.Rotate(0, -150 * Time.deltaTime, 0);
         }
+        Debug.Log(nodes.Count);
+        if (x > 0 || z > 0)
+            //update node position only if object is moving
+        {
+            Debug.Log("oops");
+            for (int i = 1; i < nodes.Count; i++)
+            {
+                
+                prevPosition = nodes[i].transform.position;//the current node's position become the next previous position
 
-        // These next parts of the Update() function does not have to be modified, its the base of the gravity for the items that hold this script
+                nodes[i].transform.position = parentPos;//the current node takes on the parent position...
+                Debug.Log(i + "position" + nodes[i].transform.position);
+                parentPos = prevPosition;//...and its position becomes the next parent position
+
+            }
+        }
+
+    }
+
+    void GroundControl()
+    {
         // Ground control
         RaycastHit hit = new RaycastHit();
         if (Physics.Raycast(transform.position, -transform.up, out hit, 10))
@@ -76,7 +150,10 @@ public class Player : MonoBehaviour
                 OnGround = false;
             }
         }
+    }
 
+    void GravityAndRotation()
+    {
         // Gravity and rotation
         Vector3 gravDirection = (transform.position - Planet.transform.position).normalized;
 
