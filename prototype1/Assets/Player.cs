@@ -125,7 +125,7 @@ public class Player : MonoBehaviour
         switch (directionH)
         {
             case PlayerDirection.RIGHT:
-                x = Input.GetAxis("Horizontal") * Time.deltaTime * speed;
+                x = 1 * Time.deltaTime * speed;
                 break;
 
             case PlayerDirection.LEFT:
@@ -144,9 +144,6 @@ public class Player : MonoBehaviour
                 z = -1 * Time.deltaTime * speed;
                 break;
         }
-
-        Vector3 parentPos = head_Body.transform.position;//take head's position as the first parent position
-        Vector3 prevPosition;//variable for preceding node's position. Created so that changes will not affect the value of parentPos.
 
         // Lets the player move on the planet perfectly in 3D. Without it, the planet would walk on the sphere like its planar.
         transform.Translate(x, 0, z);
@@ -190,11 +187,6 @@ public class Player : MonoBehaviour
                 curBodyPart.transform.rotation = Quaternion.Slerp(curBodyPart.transform.rotation, prevBodyPart.transform.rotation, T);
             }
 
-            //prevPosition = nodes[i].transform.position;//the current node's position become the next previous position
-
-            //nodes[i].transform.position = parentPos;//the current node takes on the parent position...
-            //Debug.Log(i + "position" + nodes[i].transform.position);
-            //parentPos = prevPosition;//...and its position becomes the next parent position
         }
 
         //AddBodyPart();
@@ -202,10 +194,19 @@ public class Player : MonoBehaviour
 
     public void AddBodyPart()
     {
+        //NEED TO FIND THE POSITION THAT THE NEW PART NEED TO INSTANTIATE ON
+        // this variable's value is flawed because it determinate the previous node part's position, not the new one's
+        Vector3 newPartPos = nodes[nodes.Count - 1].transform.position; 
+
+        //Instantiate the new prefab
         GameObject newpart = (Instantiate(tailPrefab, nodes[nodes.Count - 1].transform.position, nodes[nodes.Count - 1].transform.rotation));
-        newpart.transform.SetParent(transform,true);
+        
+        //Set said object as the Player Object's child
+        newpart.transform.SetParent(this.transform);
+        
+        //Add it to the part's array
         nodes.Add(newpart);
-        Debug.Log(newpart.transform.position);
+        //Debug.Log(newpart.transform.position);
     }
 
     void GroundControl()
