@@ -50,15 +50,26 @@ public class Player : MonoBehaviour
         COUNT = 4
     } //player direction
 
-    [HideInInspector] //hide the variable from the inspector
-    public PlayerDirection directionH;
-    [HideInInspector] //hide the variable from the inspector
-    public PlayerDirection directionV;
 
+    //Variable to determine if the snake is moving 
+    [HideInInspector]
+    public bool isMoving = true;
+
+    //These variables are used to update the snake's position (refer to Move() for details)
     public GameObject curBodyPart;
     public GameObject prevBodyPart;
-    public float distance;
-    public float mindistance = 0.25f;
+    public float distance; // Distance between two parts of the snake's body
+    public float mindistance = 0.25f; // Min distance between two parts of the snake's body
+
+    //These variables are used to determines the position on which the new body part will be spawn (check Move() for details)
+    private List<Vector3> previousPositions; //an ever-growing array that store the positions of the last body part of the snake every frame
+    public float lastPosCounter; //the counter variable that helps reset the array every time a certain size is reached
+
+    private List<Vector3> headPositions; //an ever-growing array that store the positions of the snakehead every frame
+
+    private bool addedPart = false;
+    int startGameRepetitionCounter = 0;
+
 
     /*******************END SNEK VARIABLES************************/
     /*******************END SNEK VARIABLES************************/
@@ -72,7 +83,6 @@ public class Player : MonoBehaviour
         rb.freezeRotation = true;
 
         InitSnakeNodes();//set up the snake
-        InitPlayer();//set up the snake's parts' placement according to the snake's direction
     }
 
     // Update is called once per frame
@@ -92,58 +102,108 @@ public class Player : MonoBehaviour
     void InitSnakeNodes()//get all the snake parts
     {
         nodes = new List<GameObject>();//Store all of them into the nodes list
+        previousPositions = new List<Vector3>();
 
-        nodes.Add(transform.GetChild(0).gameObject);//child index 0 of the GameObject
-        nodes.Add(transform.GetChild(1).gameObject);
+        GameObject GlobalPlayer = GameObject.Find("GlobalPlayer");
 
-        head_Body = nodes[0];//the first child element is the snakehead.
-        for(int i=1; i<3; i++)
+        int snakeLength = 4;
+
+        nodes.Add(transform.GetChild(0).gameObject);//get the head part
+
+        for (int i = 1; i < snakeLength; i++)
         {
-            AddBodyPart();
+            nodes.Add(GlobalPlayer.transform.GetChild(i).gameObject);//append body part to the nodes array
+            previousPositions.Add(nodes[i].transform.position); //store said body part's position to the positions array
         }
 
-    }
+        
 
-    void InitPlayer()
-    {
+        head_Body = nodes[0];//the first child element is the snakehead.
+        headPositions = new List<Vector3>();
+        headPositions.Add(head_Body.transform.position);
 
     }
 
     void Move()
     {
+        MovementsInput();
+
+        //retrieve current head position
+        Vector3 headPos = head_Body.transform.position;
+
+        //store the head's position into the headPositions list every frame
+        headPositions.Add(headPos);
+
+        int frameCounter = 0;
+
+        if (startGameRepetitionCounter >= 15)
+        {
+            for (int i = 1; i < nodes.Count; i++)
+            {
+                // Assign each body part's position to the head position 3 frames ago, then 6 frames, and so on....
+                nodes[i].transform.position = headPositions[headPositions.Count - frameCounter - 1];
+                frameCounter += 3;
+
+                //curBodyPart = nodes[i];
+                //prevBodyPart = nodes[i - 1];
+
+                //distance = Vector3.Distance(prevBodyPart.transform.position, curBodyPart.transform.position);
+                //Debug.Log(distance);
+                //Vector3 newpos = prevBodyPart.transform.position;
+
+                //newpos.y = prevBodyPart.transform.position.y;
+
+                //float T = Time.deltaTime * distance / mindistance * speed;
+
+                //if (T > 0.5f)
+                //{
+                //T = 0.5f;
+                //curBodyPart.transform.position = Vector3.Slerp(curBodyPart.transform.position, newpos, T);
+                //curBodyPart.transform.rotation = Quaternion.Slerp(curBodyPart.transform.rotation, prevBodyPart.transform.rotation, T);
+                //}
+
+            }
+            
+        } else
+        {
+            startGameRepetitionCounter++;
+            Debug.Log("adding");
+        }
+
+
+        //Now store the last bodypart's position to the position array
+        Vector3 lastBodyPartPos = nodes[nodes.Count - 1].transform.position; //retrieve the last body part's position
+        previousPositions.Add(lastBodyPartPos);//append said position to the list
+
+
+
+        //Add a body part wherever key Q is pressed
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            Debug.Log("Q pressed");
+            AddBodyPart();
+
+        }
+        
+
+    }
+
+
+    public void MovementsInput()
+    {
         // Gets the basis of the player's movements
-        float x = 0f;//horizontal placement
         float z = 0f;//vertical placement
+        float x = 0f;
 
         //old x and z:         
         //float x = Input.GetAxis("Horizontal") * Time.deltaTime * speed; // if there is no horizontal input, x = 0
         //float z = Input.GetAxis("Vertical") * Time.deltaTime * speed; // if there is no vertical input, z = 0
 
-        directionH = PlayerDirection.RIGHT;
-        directionV = PlayerDirection.UP;
-
-        switch (directionH)
+        if (isMoving == true)
         {
-            case PlayerDirection.RIGHT:
-                x = 1 * Time.deltaTime * speed;
-                break;
-
-            case PlayerDirection.LEFT:
-                x = -1 * Time.deltaTime * speed;
-                break;
+            z = 1 * Time.deltaTime * speed;
         }
 
-        switch (directionV)
-        {
-            case PlayerDirection.UP:
-                z = 1 * Time.deltaTime * speed;
-                Debug.Log("directionV");
-                break;
-
-            case PlayerDirection.DOWN:
-                z = -1 * Time.deltaTime * speed;
-                break;
-        }
 
         // Lets the player move on the planet perfectly in 3D. Without it, the planet would walk on the sphere like its planar.
         transform.Translate(x, 0, z);
@@ -151,7 +211,6 @@ public class Player : MonoBehaviour
         //rb.transform.position = head_Body.transform.position;
 
         //
-        // Player inputs by rotation. Can be changed to translation I think because as the prototype is now, the player cannot move left or right without moving foward or backyard also.
         // Change character direction by rotation: doesn't actually move the character around (as it affects the y axis) but rather the rotation range
         // If the 'D' key or RightArrow is pressed
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
@@ -166,43 +225,21 @@ public class Player : MonoBehaviour
             // Makes sures the inputs gets the same number or the movements will be unbalanced.
             transform.Rotate(0, -150 * Time.deltaTime, 0);
         }
-
-        for (int i = 1; i < nodes.Count; i++)
-        {
-            curBodyPart = nodes[i];
-            prevBodyPart = nodes[i - 1];
-
-            //distance = Vector3.Distance(prevBodyPart.transform.position, curBodyPart.transform.position);
-            //Debug.Log(distance);
-            Vector3 newpos = prevBodyPart.transform.position;
-
-            //newpos.y = prevBodyPart.transform.position.y;
-
-            float T = Time.deltaTime * distance / mindistance * speed;
-
-            if (T>0.5f)
-            {
-                T = 0.5f;
-                curBodyPart.transform.position = Vector3.Slerp(curBodyPart.transform.position, newpos, T);
-                curBodyPart.transform.rotation = Quaternion.Slerp(curBodyPart.transform.rotation, prevBodyPart.transform.rotation, T);
-            }
-
-        }
-
-        //AddBodyPart();
     }
 
     public void AddBodyPart()
     {
-        //NEED TO FIND THE POSITION THAT THE NEW PART NEED TO INSTANTIATE ON
-        // this variable's value is flawed because it determinate the previous node part's position, not the new one's
-        Vector3 newPartPos = nodes[nodes.Count - 1].transform.position; 
+        //Find the position that the last body part was last on 3 frames ago
+        // this variable's value is flawed because it determines the previous node part's position, not the new one's
+        Vector3 newPartPos = previousPositions[previousPositions.Count - 4]; //have to account for the first list element being previousPositions[0]
 
         //Instantiate the new prefab
-        GameObject newpart = (Instantiate(tailPrefab, nodes[nodes.Count - 1].transform.position, nodes[nodes.Count - 1].transform.rotation));
+        GameObject newpart = (Instantiate(tailPrefab, newPartPos, nodes[nodes.Count - 1].transform.rotation));
         
         //Set said object as the Player Object's child
-        newpart.transform.SetParent(this.transform);
+        newpart.transform.SetParent(GameObject.Find("GlobalPlayer").transform);
+
+        newpart.transform.localScale = new Vector3(0.31f, 0.31f, 0.31f);
         
         //Add it to the part's array
         nodes.Add(newpart);
