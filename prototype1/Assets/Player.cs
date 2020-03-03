@@ -282,17 +282,4 @@ public class Player : MonoBehaviour
         transform.rotation = toRotation;
     }
 
-    // Jump (modified by me, so the player can't spam the jump button and go in space, thus broken the game)
-    public void OnCollisionStay(Collision other)
-    {
-        // The player can only jump again if he touches the planet
-        if (other.gameObject == Planet)
-        {
-            // If the 'Space' key is pressed
-            if (Input.GetKey(KeyCode.Space))
-            {
-                rb.AddForce(transform.up * 5000 * JumpHeight * Time.deltaTime);
-            }
-        }
-    }
 }
