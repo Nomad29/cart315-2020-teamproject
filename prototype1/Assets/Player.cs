@@ -56,8 +56,8 @@ public class Player : MonoBehaviour
     public bool isMoving = true;
 
     //These variables are used to update the snake's position (refer to Move() for details)
-    public GameObject curBodyPart;
-    public GameObject prevBodyPart;
+    //public GameObject curBodyPart;
+    //public GameObject prevBodyPart;
     public float distance; // Distance between two parts of the snake's body
     public float mindistance = 0.25f; // Min distance between two parts of the snake's body
 
@@ -170,11 +170,9 @@ public class Player : MonoBehaviour
             Debug.Log("adding");
         }
 
-
         //Now store the last bodypart's position to the position array
         Vector3 lastBodyPartPos = nodes[nodes.Count - 1].transform.position; //retrieve the last body part's position
         previousPositions.Add(lastBodyPartPos);//append said position to the list
-
 
 
         //Add a body part wherever key Q is pressed
@@ -182,10 +180,7 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Q pressed");
             AddBodyPart();
-
         }
-        
-
     }
 
 
@@ -239,7 +234,7 @@ public class Player : MonoBehaviour
         //Set said object as the Player Object's child
         newpart.transform.SetParent(GameObject.Find("GlobalPlayer").transform);
 
-        newpart.transform.localScale = new Vector3(0.31f, 0.31f, 0.31f);
+        newpart.transform.localScale = new Vector3(0.8299207f, 0.8299207f, 0.8299207f);
         
         //Add it to the part's array
         nodes.Add(newpart);

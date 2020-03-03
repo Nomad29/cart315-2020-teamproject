@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class Timer : MonoBehaviour
 {
 
-    public float timeLeft = 30.0f; // 30 seconds is the Timer, could be more
+    public float timeLeft = 60.0f; // 60 seconds is the Timer, could be more
     public Text startText; // used for showing the words 'Time left'
 
 
@@ -20,8 +20,8 @@ public class Timer : MonoBehaviour
         // To see the scenes order and calculate the outcome, you just need to go in the Unity menu File -> Build Settings. 
         if (timeLeft < 0)
         {
-            // Goes to 'Game over' scene
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
+            // Goes to 'Win' scene that will show to player its score
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 }
