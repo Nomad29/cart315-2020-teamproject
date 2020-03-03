@@ -15,10 +15,12 @@ public class Win : MonoBehaviour
         set { Score = value; }
     }
 
+    // Text that will hold the Score
     public Text scoreText;
 
     public void Update()
     {
+        // Get the Score and insert it into a text
         scoreText.text = Food.Score.ToString();
 
         //Starts the game again by pressing R (for Reset). Useful for playtesting class

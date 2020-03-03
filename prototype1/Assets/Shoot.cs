@@ -37,6 +37,7 @@ public class Shoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Keeps the users from shooting more than one bullet at a time
         for (int i = 0; i < numberOfObjects; i++)
         {
             // If right mouse click is pushed.

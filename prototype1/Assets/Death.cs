@@ -17,6 +17,7 @@ public class Death : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // Make this script variable refered as the Player gameObject
         Player = GameObject.FindWithTag("Player");
     }
 
