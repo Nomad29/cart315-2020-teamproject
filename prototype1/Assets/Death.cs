@@ -30,10 +30,10 @@ public class Death : MonoBehaviour
     {
         if (other.gameObject == Player)
         {
-            // Game Over screen
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
             // Reset the score to zero
             Food.Score = 0;
+            // Game Over screen
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);
         }
     }
 }

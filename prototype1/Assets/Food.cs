@@ -14,8 +14,16 @@ public class Food : MonoBehaviour
     void Start()
     {
        this.gameObject.SetActive(true);
+
+        // Reset the score at each new game
+        Score = 0;
+
         // Gets the Player script
         myPlayerScript = GameObject.Find("Player").GetComponent<Player>();
+
+        PlayerPrefs.SetInt("Score", Score);
+        PlayerPrefs.Save();
+
     }
 
     // Update is called once per frame

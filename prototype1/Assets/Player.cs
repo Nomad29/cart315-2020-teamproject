@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public GameObject Planet;
     // These two floats can be changed in Unity also
     public float speed = 7;
-    public float JumpHeight = 7f;
 
     // Related to the base gravity script that we do not need to modify.
     float gravity = 100;
@@ -90,8 +89,6 @@ public class Player : MonoBehaviour
     {
         Move();
 
-
-
         // These next parts of the Update() function does not have to be modified, its the base of the gravity for the items that hold this script
         GroundControl();
         GravityAndRotation();
@@ -115,8 +112,6 @@ public class Player : MonoBehaviour
             nodes.Add(GlobalPlayer.transform.GetChild(i).gameObject);//append body part to the nodes array
             previousPositions.Add(nodes[i].transform.position); //store said body part's position to the positions array
         }
-
-        
 
         head_Body = nodes[0];//the first child element is the snakehead.
         headPositions = new List<Vector3>();
