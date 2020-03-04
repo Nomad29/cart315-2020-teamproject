@@ -35,12 +35,14 @@ public class Food : MonoBehaviour
         { 
             // Add +1 to the score
             Score++;
-            // Start a delay function of 7 seconds
+            // Start a delay function of 30 seconds
             StartCoroutine(Reapparition());
             // Make the food pelet disappear
             this.gameObject.GetComponent<Renderer>().enabled = false;
             this.gameObject.GetComponent<Collider>().enabled = false;
-            // Execute the AddBodyPart function from the Player script
+            // Execute the AddBodyPart function tree times from the Player script so the player gets more challenge (not touching the tail)
+            myPlayerScript.AddBodyPart();
+            myPlayerScript.AddBodyPart();
             myPlayerScript.AddBodyPart();
             Debug.Log("Score++");
         }
@@ -48,8 +50,8 @@ public class Food : MonoBehaviour
 
     public IEnumerator Reapparition()
     {
-        // Start a delay of 7 seconds
-        yield return new WaitForSeconds(7.0f);
+        // Start a delay of 30 seconds
+        yield return new WaitForSeconds(30.0f);
         // Make the food pelet reappear
         this.gameObject.GetComponent<Renderer>().enabled = true;
         this.gameObject.GetComponent<Collider>().enabled = true;

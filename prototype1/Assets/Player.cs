@@ -171,11 +171,11 @@ public class Player : MonoBehaviour
 
 
         //Add a body part wherever key Q is pressed
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            Debug.Log("Q pressed");
-            AddBodyPart();
-        }
+        //if (Input.GetKeyDown(KeyCode.Q))
+        //{
+        //Debug.Log("Q pressed");
+        //AddBodyPart();
+        //}
     }
 
 

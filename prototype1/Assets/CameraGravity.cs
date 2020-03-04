@@ -27,10 +27,10 @@ public class CameraGravity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            transform.RotateAround(target.transform.position, transform.up, Input.GetAxis("Mouse X") * xSpeed);
-            transform.RotateAround(target.transform.position, transform.right, Input.GetAxis("Mouse Y") * xSpeed);
-        }
+        //if (Input.GetMouseButton(0))
+        //{
+        //transform.RotateAround(target.transform.position, transform.up, Input.GetAxis("Mouse X") * xSpeed);
+        //transform.RotateAround(target.transform.position, transform.right, Input.GetAxis("Mouse Y") * xSpeed);
+        //}
     }
 }

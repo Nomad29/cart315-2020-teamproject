@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class Timer : MonoBehaviour
 {
-    public float timeLeft = 60.0f; // 60 seconds is the Timer, could be more
+    public float timeLeft = 100.0f; // 100 seconds is the Timer, could be more
     public Text startText; // used for showing the words 'Time left'
     // Score from the Food script
     public int Score

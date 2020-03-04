@@ -40,9 +40,9 @@ public class Shoot : MonoBehaviour
         // Keeps the users from shooting more than one bullet at a time
         for (int i = 0; i < numberOfObjects; i++)
         {
-            // If right mouse click is pushed.
+            // If left mouse click is pushed.
             // The Down does not let the player using continuously the shoot mouse click
-            if (Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(0))
         {
             // The Bullet instantiation happens here.
             GameObject Temporary_Bullet_Handler;
