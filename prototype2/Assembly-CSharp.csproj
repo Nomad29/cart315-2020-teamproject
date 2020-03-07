@@ -66,6 +66,7 @@
      <Compile Include="Assets\Imphenzia\GradientSky\Scripts\GradientSkyCamera.cs" />
      <Compile Include="Assets\Imphenzia\GradientSky\Scripts\GradientSkyObject.cs" />
      <Compile Include="Assets\Menu.cs" />
+     <Compile Include="Assets\PlanetPenalty.cs" />
      <Compile Include="Assets\Player.cs" />
      <Compile Include="Assets\RedGreen.cs" />
      <Compile Include="Assets\RoadBlue.cs" />
