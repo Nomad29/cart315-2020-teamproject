@@ -8,26 +8,48 @@ using UnityEngine.SceneManagement;
 
 public class Win : MonoBehaviour
 {
-    // Score from the Food script
+    // Score from the Checkpoint script
     public int Score
     {
         get { return Score; }
         set { Score = value; }
     }
+    // AiScore from the AiCheckpoint script
+    public int AiScore
+    {
+        get { return AiScore; }
+        set { AiScore = value; }
+    }
 
-    // Text that will hold the Score
-    public Text scoreText;
+    public void PlayAgain()
+    {
+        // Goes to the 'Game' scene
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        // Reset the score
+        Checkpoint.Score = 0;
+        AiCheckpoint.AiScore = 0;
+    }
 
     public void Update()
     {
-        // Get the Score and insert it into a text
-        scoreText.text = Checkpoint.Score.ToString();
-
         //Starts the game again by pressing R (for Reset). Useful for playtesting class
         if (Input.GetKeyDown(KeyCode.R))
         {
             // Goes to the 'Menu' scene at the beginning
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+            // Reset the score
+            Checkpoint.Score = 0;
+            AiCheckpoint.AiScore = 0;
+        }
+
+        //Starts the game again by pressing Space if people do not want to use the mouse
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Goes to the 'Game' scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            // Reset the score
+            Checkpoint.Score = 0;
+            AiCheckpoint.AiScore = 0;
         }
     }
 

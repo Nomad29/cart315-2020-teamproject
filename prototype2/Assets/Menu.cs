@@ -16,4 +16,13 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void Update()
+    {
+        //Starts the game again by pressing Space if people do not want to use the mouse
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            // Goes to the 'Game' scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
 }
