@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
     // Gets the player's RigidBody. It needs a RigidBody installed on it in order to work.
     private Rigidbody rb;
 
+    public Material playerFlagR;
+    public Material playerFlagG;
+    public Material playerFlagB;
+
     // Start is called before the first frame update
     void Start()
     {

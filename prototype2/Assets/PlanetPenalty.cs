@@ -27,9 +27,74 @@ public class PlanetPenalty : MonoBehaviour
             // Player moves very slowly
             playerScript.speed = 1;
         }
-        else
+        else if (OnBlue == true && OnRed == true)
         {
-            playerScript.speed = 5;
+            //if player has blue or red tag --> player is fine
+            if (Player.tag == "PlayerBlue" || Player.tag == "PlayerRed")
+            {
+                playerScript.speed = 5;
+            }
+            else
+            {
+                playerScript.speed = 3;//else the speed is slightly lower
+            }
+        }
+        else if (OnBlue == true && OnGreen == true)
+        {
+            //if player has blue or green tag --> player is fine
+            if (Player.tag == "PlayerBlue" || Player.tag == "PlayerGreen")
+            {
+                playerScript.speed = 5;
+            }
+            else
+            {
+                playerScript.speed = 3;//else the speed is slightly lower
+            }
+        }
+        else if (OnGreen == true && OnRed == true)
+        {
+            //if player has green or red tag --> player is fine
+            if (Player.tag == "PlayerRed" || Player.tag == "PlayerGreen")
+            {
+                playerScript.speed = 5;
+            }
+            else
+            {
+                playerScript.speed = 3;//else the speed is slightly lower
+            }
+        }
+        else if (OnBlue == true)
+        {
+            if (Player.tag == "PlayerBlue")
+            {
+                playerScript.speed = 5;
+            }
+            else
+            {
+                playerScript.speed = 3;
+            }
+        }
+        else if (OnRed == true)
+        {
+            if (Player.tag == "PlayerRed")
+            {
+                playerScript.speed = 5;
+            }
+            else
+            {
+                playerScript.speed = 3;
+            }
+        }
+        else if (OnGreen == true)
+        {
+            if (Player.tag == "PlayerGreen")
+            {
+                playerScript.speed = 5;
+            }
+            else
+            {
+                playerScript.speed = 3;
+            }
         }
     }
 

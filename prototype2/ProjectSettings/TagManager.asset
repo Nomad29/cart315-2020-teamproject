@@ -7,6 +7,9 @@ TagManager:
   - Planet
   - TAIL
   - PlayerEyes
+  - PlayerRed
+  - PlayerGreen
+  - PlayerBlue
   layers:
   - Default
   - TransparentFX

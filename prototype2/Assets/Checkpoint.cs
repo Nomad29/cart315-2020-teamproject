@@ -11,13 +11,17 @@ public class Checkpoint : MonoBehaviour
     public GameObject Player;
     public GameObject Flag;
 
+    public Player playerScript;
+
     public Color whitee;
-    public Color normalee;
+
+    string checkPointColor;
+    string[] colorList = new string[]{"red","green","blue"}; 
 
     // Start is called before the first frame update
     void Start()
     {
-
+        setFlagColor();
     }
 
     // Update is called once per frame
@@ -45,14 +49,61 @@ public class Checkpoint : MonoBehaviour
             Score++;
             // Disable collider of checkpoint for keeping player from spaming one
             this.gameObject.GetComponent<Collider>().enabled = false;
+
             // Start a delay function of 7 seconds
             StartCoroutine(Reuse());
+
             // Make the flag change color when used
             Flag.transform.GetComponent<Renderer>().material.color = whitee;
+
+            //Turn the player's flag and bike into the corresponding color
+            if (checkPointColor == "blue")
+            {
+                Player.tag = "PlayerBlue";
+                GameObject.Find("playerFLAG").GetComponent<MeshRenderer>().material = playerScript.playerFlagB;
+                GameObject.Find("pasted__pCube2").GetComponent<MeshRenderer>().material = playerScript.playerFlagB;
+
+
+            }
+            else if (checkPointColor == "red")
+            {
+                Player.tag = "PlayerRed";
+                GameObject.Find("playerFLAG").GetComponent<MeshRenderer>().material = playerScript.playerFlagR;
+                GameObject.Find("pasted__pCube2").GetComponent<MeshRenderer>().material = playerScript.playerFlagR;
+
+            }
+            else if (checkPointColor == "green")
+            {
+                Player.tag = "PlayerGreen";
+                GameObject.Find("playerFLAG").GetComponent<MeshRenderer>().material = playerScript.playerFlagG;
+                GameObject.Find("pasted__pCube2").GetComponent<MeshRenderer>().material = playerScript.playerFlagG;
+
+            }
+
             Debug.Log("Score +1");
         }
     }
 
+    void setFlagColor()
+    {
+        //randomize the checkpoint's color
+        checkPointColor = colorList[Random.Range(0, colorList.Length)];
+        Debug.Log("checkcolor " + checkPointColor);
+
+        if (checkPointColor == "blue")
+        {
+            Flag.transform.GetComponent<Renderer>().material.color = new Color32(68, 117, 240, 255);
+        }
+        else if (checkPointColor == "red")
+        {
+            Flag.transform.GetComponent<Renderer>().material.color = new Color32(240, 72, 68, 255);
+        }
+        else if (checkPointColor == "green")
+        {
+            Flag.transform.GetComponent<Renderer>().material.color = new Color32(9, 163, 113, 255);
+        }
+    }
+    
     public IEnumerator Reuse()
     {
         // Start a delay of 7 seconds
@@ -60,7 +111,7 @@ public class Checkpoint : MonoBehaviour
         // Enable back the checkpoint's collider
         this.gameObject.GetComponent<Collider>().enabled = true;
         // Make the flag change color back to normal
-        Flag.transform.GetComponent<Renderer>().material.color = normalee;
+        setFlagColor();
     }
 
 }
