@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     // These two floats can be changed in Unity also
     public float speed = 5;
 
+
     // Related to the base gravity script that we do not need to modify.
     float gravity = 100;
     bool OnGround = false;

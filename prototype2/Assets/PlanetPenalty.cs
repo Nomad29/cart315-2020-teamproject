@@ -32,7 +32,7 @@ public class PlanetPenalty : MonoBehaviour
             //if player has blue or red tag --> player is fine
             if (Player.tag == "PlayerBlue" || Player.tag == "PlayerRed")
             {
-                playerScript.speed = 5;
+                playerScript.speed = 7;
             }
             else
             {
@@ -44,7 +44,7 @@ public class PlanetPenalty : MonoBehaviour
             //if player has blue or green tag --> player is fine
             if (Player.tag == "PlayerBlue" || Player.tag == "PlayerGreen")
             {
-                playerScript.speed = 5;
+                playerScript.speed = 7;
             }
             else
             {
@@ -56,7 +56,7 @@ public class PlanetPenalty : MonoBehaviour
             //if player has green or red tag --> player is fine
             if (Player.tag == "PlayerRed" || Player.tag == "PlayerGreen")
             {
-                playerScript.speed = 5;
+                playerScript.speed = 7;
             }
             else
             {
@@ -67,7 +67,7 @@ public class PlanetPenalty : MonoBehaviour
         {
             if (Player.tag == "PlayerBlue")
             {
-                playerScript.speed = 5;
+                playerScript.speed = 7;
             }
             else
             {
@@ -78,7 +78,7 @@ public class PlanetPenalty : MonoBehaviour
         {
             if (Player.tag == "PlayerRed")
             {
-                playerScript.speed = 5;
+                playerScript.speed = 7;
             }
             else
             {
@@ -89,7 +89,7 @@ public class PlanetPenalty : MonoBehaviour
         {
             if (Player.tag == "PlayerGreen")
             {
-                playerScript.speed = 5;
+                playerScript.speed = 7;
             }
             else
             {
