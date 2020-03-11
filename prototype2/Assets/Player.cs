@@ -66,7 +66,6 @@ public class Player : MonoBehaviour
         // If the 'W' key or UpArrow is pressed
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-           // The only thing modifiable in this string is the number '150'. Going higher will make the player's avatar will do a bigger rotation while smaller will to the opposite.
            z = 2 * Time.deltaTime * speed;
         }
 
@@ -74,7 +73,6 @@ public class Player : MonoBehaviour
         // If the 'S' key or DownArrow is pressed
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            // The only thing modifiable in this string is the number '150'. Going higher will make the player's avatar will do a bigger rotation while smaller will to the opposite.
             z = -1 * Time.deltaTime * speed;
         }
 
@@ -82,7 +80,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             // Make the player go foward a bit also
-            z = 1 * Time.deltaTime * speed;
+            //z = 1 * Time.deltaTime * speed;
             // The only thing modifiable in this string is the number '-150'. Going higher will make the player's avatar will do a bigger rotation while smaller will to the opposite.
             // Makes sures the inputs gets the same number or the movements will be unbalanced.
             transform.Rotate(0, -150 * Time.deltaTime, 0);
@@ -93,7 +91,7 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             // Make the player go foward a bit also
-            z = 1 * Time.deltaTime * speed;
+            //z = 1 * Time.deltaTime * speed;
             // The only thing modifiable in this string is the number '150'. Going higher will make the player's avatar will do a bigger rotation while smaller will to the opposite.
             transform.Rotate(0, 150 * Time.deltaTime, 0);
         }

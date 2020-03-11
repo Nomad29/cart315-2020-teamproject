@@ -6,6 +6,8 @@ public class RoadGreen : MonoBehaviour
 {
     public GameObject Player;
 
+    public PlanetPenalty planetPenalty;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,8 +24,15 @@ public class RoadGreen : MonoBehaviour
     {
         if (other.gameObject == Player)
         {
-            // Write here what happens when the player is on the green road
-            Debug.Log("On Green");
+            planetPenalty.OnGreen = true;
+        }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject == Player)
+        {
+            planetPenalty.OnGreen = false;
         }
     }
 }

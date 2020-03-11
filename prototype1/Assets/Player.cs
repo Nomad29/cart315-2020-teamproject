@@ -37,7 +37,6 @@ public class Player : MonoBehaviour
 
     private List<GameObject> nodes; //every part of the snake's body
 
-    private bool create_Node_At_Tail; //to tell if you need to add tail or not
 
     [HideInInspector]
     public enum PlayerDirection//indicate the snake's direction with numbers
@@ -197,8 +196,7 @@ public class Player : MonoBehaviour
 
         // Lets the player move on the planet perfectly in 3D. Without it, the planet would walk on the sphere like its planar.
         transform.Translate(x, 0, z);
-        // update the snake's global position
-        //rb.transform.position = head_Body.transform.position;
+
 
         //
         // Change character direction by rotation: doesn't actually move the character around (as it affects the y axis) but rather the rotation range

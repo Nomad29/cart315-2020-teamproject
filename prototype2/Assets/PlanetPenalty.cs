@@ -6,6 +6,12 @@ public class PlanetPenalty : MonoBehaviour
 {
     public GameObject Player;
 
+    public Player playerScript;
+
+    public bool OnBlue = false;
+    public bool OnRed = false;
+    public bool OnGreen = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +21,16 @@ public class PlanetPenalty : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    public void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject == Player)
+        if (OnBlue == false && OnRed == false && OnGreen == false)
         {
-            // Write here what happens when the player goes on the planet and not on the roads
+
+            // Player moves very slowly
+            playerScript.speed = 1;
+        }
+        else
+        {
+            playerScript.speed = 5;
         }
     }
+
 }
