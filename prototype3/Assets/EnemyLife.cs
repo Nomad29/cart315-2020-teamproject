@@ -68,7 +68,7 @@ public class EnemyLife : MonoBehaviour
     {
         // Start a delay of 0.5 second
         yield return new WaitForSeconds(0.5f);
-
+        EnemyLifeCount = 5;
         // Win screen after 5 hits by the player
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
