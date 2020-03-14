@@ -46,7 +46,7 @@ public class PlayerShoot : MonoBehaviour
                 // The Ball instantiation happens here.
                 GameObject Temporary_Ball_Handler;
                 Temporary_Ball_Handler = Instantiate(Ball, Ball_Emitter.transform.position, Ball_Emitter.transform.rotation) as GameObject;
-                Debug.Log("Ball shooted");
+                Debug.Log("Player Ball shooted");
 
                 // Sometimes Balls may appear rotated incorrectly due to the way its pivot was set from the original modeling package.
                 Temporary_Ball_Handler.transform.Rotate(Vector3.left * 90);
@@ -59,8 +59,8 @@ public class PlayerShoot : MonoBehaviour
                 // Tell the Ball to be "pushed" forward by an amount set by Ball_Forward_Force.
                 Temporary_RigidBody.AddForce(transform.forward * Ball_Forward_Force);
 
-                // Basic Clean Up, set the Balls to self destruct after 30 Seconds. Can be bigger number if used as a projectile and not a boost.
-                Destroy(Temporary_Ball_Handler, 30f);
+                // Basic Clean Up, set the Balls to self destruct after 7 Seconds. Can be bigger number if used as a projectile and not a boost.
+                Destroy(Temporary_Ball_Handler, 7f);
             }
         }
 

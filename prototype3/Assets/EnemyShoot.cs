@@ -26,11 +26,27 @@ public class EnemyShoot : MonoBehaviour
     // Number of Balls to shoot
     public int numberOfObjects = 1;
 
+    // Array of colors for the balls
+    public Color[] colors = new Color[3];
+
+    // Enemy ball prefab for color change
+    public GameObject EnemyBall;
+
+    // Turret's eye for color change
+    public GameObject EnemyEye;
+    public Color cyan;
+    public Color red;
+    public Color green;
+
     // Use this for initialization
     void Start()
     {
-        // Invokes the shoot function at interval of 3-5 seconds and repeated afterward
-        InvokeRepeating("Shoot", Random.Range(3.0f,5.0f), Random.Range(3.0f, 5.0f));
+        colors[0] = Color.cyan;
+        colors[1] = Color.red;
+        colors[2] = Color.green;
+
+        // Invokes the shoot function at interval of 7-10 seconds and repeated afterward
+        InvokeRepeating("Shoot", Random.Range(7.0f, 10.0f), Random.Range(7.0f, 10.0f));
     }
 
     // Update is called once per frame
@@ -38,29 +54,56 @@ public class EnemyShoot : MonoBehaviour
     {
     }
 
+    public void ChangeColor()
+    {
+        EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color = colors[Random.Range(0, colors.Length)];
+        Debug.Log("Ball color changed");
+
+        if (EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.cyan)
+        {
+            EnemyEye.gameObject.GetComponent<Renderer>().material.color = cyan;
+            Debug.Log("Turret eye changed cyan");
+        }
+
+        else if (EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.red)
+        {
+            EnemyEye.gameObject.GetComponent<Renderer>().material.color = red;
+            Debug.Log("Turret eye changed red");
+        }
+        
+        else if (EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.green)
+        {
+            EnemyEye.gameObject.GetComponent<Renderer>().material.color = green;
+            Debug.Log("Turret eye changed green");
+        }
+    }
+
     public void Shoot()
     {
         // Keeps the users from shooting more than one Ball at a time
         for (int i = 0; i<numberOfObjects; i++)
         {
-                // The Ball instantiation happens here.
-                GameObject Temporary_Ball_Handler;
-                Temporary_Ball_Handler = Instantiate(Ball, Ball_Emitter.transform.position, Ball_Emitter.transform.rotation) as GameObject;
-                Debug.Log("Enemy Ball shooted");
+            // The Ball instantiation happens here.
+            GameObject Temporary_Ball_Handler;
 
-                // Sometimes Balls may appear rotated incorrectly due to the way its pivot was set from the original modeling package.
-                Temporary_Ball_Handler.transform.Rotate(Vector3.left* 90);
+            Temporary_Ball_Handler = Instantiate(Ball, Ball_Emitter.transform.position, Ball_Emitter.transform.rotation) as GameObject;
+            Debug.Log("Enemy Ball shooted");
 
-                // Retrieve the Rigidbody component from the instantiated Ball and control it. 
-                // Important that the things you want to fire upon with the Balls to possess a RigidBody also.
-                Rigidbody Temporary_RigidBody;
-                Temporary_RigidBody = Temporary_Ball_Handler.GetComponent<Rigidbody>();
+            // Sometimes Balls may appear rotated incorrectly due to the way its pivot was set from the original modeling package.
+            Temporary_Ball_Handler.transform.Rotate(Vector3.left* 90);
 
-                // Tell the Ball to be "pushed" forward by an amount set by Ball_Forward_Force.
-                Temporary_RigidBody.AddForce(transform.forward* Ball_Forward_Force);
+            // Retrieve the Rigidbody component from the instantiated Ball and control it. 
+            // Important that the things you want to fire upon with the Balls to possess a RigidBody also.
+            Rigidbody Temporary_RigidBody;
+            Temporary_RigidBody = Temporary_Ball_Handler.GetComponent<Rigidbody>();
 
-                // Basic Clean Up, set the Balls to self destruct after 30 Seconds. Can be bigger number if used as a projectile and not a boost.
-                Destroy(Temporary_Ball_Handler, 30f);
+            // Tell the Ball to be "pushed" forward by an amount set by Ball_Forward_Force.
+            Temporary_RigidBody.AddForce(transform.forward* Ball_Forward_Force);
+
+            // Basic Clean Up, set the Balls to self destruct after 7 Seconds. Can be bigger number if used as a projectile and not a boost.
+            Destroy(Temporary_Ball_Handler, 7f);
+
+            ChangeColor();
         }
     }
 }

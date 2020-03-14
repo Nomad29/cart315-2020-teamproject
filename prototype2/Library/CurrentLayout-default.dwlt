@@ -312,10 +312,10 @@ MonoBehaviour:
     m_VRangeLocked: 0
     hZoomLockedByDefault: 0
     vZoomLockedByDefault: 0
-    m_HBaseRangeMin: -324.80002
-    m_HBaseRangeMax: 324.80002
-    m_VBaseRangeMin: -167.2
-    m_VBaseRangeMax: 167.2
+    m_HBaseRangeMin: -406
+    m_HBaseRangeMax: 406
+    m_VBaseRangeMin: -209
+    m_VBaseRangeMax: 209
     m_HAllowExceedBaseRangeMin: 1
     m_HAllowExceedBaseRangeMax: 1
     m_VAllowExceedBaseRangeMin: 1
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_defaultScale: 1
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
-  m_LastWindowPixelSize: {x: 1015, y: 543.75}
+  m_LastWindowPixelSize: {x: 812, y: 435}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000000000100000100
@@ -385,9 +385,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
-      m_LastClickedID: 0
-      m_ExpandedIDs: 18efffff4eefffffa4f0ffffaef0ffffc4f0ffffdcf0ffff48f6ffff74fbffffc0490000424b0000
+      m_SelectedIDs: 784b0000
+      m_LastClickedID: 19320
+      m_ExpandedIDs: 74fbffff044a0000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -480,7 +480,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0.34665114, y: 0.0028139874, z: -0.0010399575, w: 0.93798965}
     speed: 2
-    m_Value: {x: 0.34665105, y: 0.0028139867, z: -0.0010399573, w: 0.9379894}
+    m_Value: {x: -0.34665114, y: -0.0028139872, z: 0.0010399575, w: -0.93798965}
   m_Size:
     m_Target: 111.819855
     speed: 2

@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Planet
+  - PlayerEyes
+  - EnemyBall
+  - Enemy
+  - PlayerBall
   layers:
   - Default
   - TransparentFX
@@ -14,10 +18,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - EnemyBall
+  - PlayerBall
+  - Enemy
+  - Player
   - 
   - 
   - 
