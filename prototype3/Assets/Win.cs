@@ -4,16 +4,16 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class Menu : MonoBehaviour
+public class Win : MonoBehaviour
 {
     public void Update()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        // If SPACE is pressed, starts the game scene
+        // If SPACE is pressed, starts the whole thing again
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
         }
     }
 }

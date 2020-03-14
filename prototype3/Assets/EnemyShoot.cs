@@ -34,6 +34,7 @@ public class EnemyShoot : MonoBehaviour
 
     // Turret's eye for color change
     public GameObject EnemyEye;
+    // Turret's eye colors
     public Color cyan;
     public Color red;
     public Color green;
@@ -41,6 +42,7 @@ public class EnemyShoot : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        // Enemy ball colors defined here
         colors[0] = Color.cyan;
         colors[1] = Color.red;
         colors[2] = Color.green;
@@ -56,24 +58,35 @@ public class EnemyShoot : MonoBehaviour
 
     public void ChangeColor()
     {
+        // Gets the enemy ball material and sets it to a random choice of colors among the color defined above in void Start()
         EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color = colors[Random.Range(0, colors.Length)];
+
         Debug.Log("Ball color changed");
 
+        // Sets here what happens when the enemy ball is cyan
         if (EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.cyan)
         {
+            // Changes the enemy's eye to cyan
             EnemyEye.gameObject.GetComponent<Renderer>().material.color = cyan;
+
             Debug.Log("Turret eye changed cyan");
         }
 
+        // Sets here what happens when the enemy ball is red
         else if (EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.red)
         {
+            // Changes the enemy's eye to red
             EnemyEye.gameObject.GetComponent<Renderer>().material.color = red;
+
             Debug.Log("Turret eye changed red");
         }
-        
+
+        // Sets here what happens when the enemy ball is green
         else if (EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.green)
         {
+            // Changes the enemy's eye to green
             EnemyEye.gameObject.GetComponent<Renderer>().material.color = green;
+
             Debug.Log("Turret eye changed green");
         }
     }
@@ -103,6 +116,7 @@ public class EnemyShoot : MonoBehaviour
             // Basic Clean Up, set the Balls to self destruct after 7 Seconds. Can be bigger number if used as a projectile and not a boost.
             Destroy(Temporary_Ball_Handler, 7f);
 
+            // Calls the change color function above at each shooting
             ChangeColor();
         }
     }
