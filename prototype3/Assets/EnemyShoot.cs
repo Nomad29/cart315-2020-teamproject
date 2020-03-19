@@ -48,7 +48,7 @@ public class EnemyShoot : MonoBehaviour
         colors[2] = Color.green;
 
         // Invokes the shoot function at interval of 7-10 seconds and repeated afterward
-        InvokeRepeating("Shoot", Random.Range(2.0f, 4.0f), Random.Range(2.0f, 4.0f));
+        InvokeRepeating("Shoot", Random.Range(1.0f, 2.0f), Random.Range(1.0f, 2.0f));
     }
 
     // Update is called once per frame

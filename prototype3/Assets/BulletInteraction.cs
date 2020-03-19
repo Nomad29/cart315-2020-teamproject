@@ -29,18 +29,7 @@ public class BulletInteraction : MonoBehaviour
                 //Set the new bullet color 
                 Color newBulletCol = Color.black;
                 //Debug.Log(SelectedObj.tag);
-                if (SelectedObj.CompareTag("PickableRed"))
-                {
-                    newBulletCol = Color.red;
-                }
-                if (SelectedObj.CompareTag("PickableCyan"))
-                {
-                    newBulletCol = Color.cyan;
-                }
-                if (SelectedObj.CompareTag("PickableGreen"))
-                {
-                    newBulletCol = Color.green;
-                }
+                newBulletCol = SelectedObj.GetComponent<Renderer>().material.color;
 
                 //destroy the selected object
                 Destroy(SelectedObj);
@@ -70,64 +59,20 @@ public class BulletInteraction : MonoBehaviour
             }
         }
 
-        //DETECTION BY RAYCAST, USED WHEN ATTACH SCRIPT TO PLAYER CHILD OBJECT
-        //RaycastHit hit;
-        //if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, 3f))
-        //{
-        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-        //if (hit.collider.gameObject.tag == "PickableRed" || hit.collider.gameObject.tag == "PickableCyan" || hit.collider.gameObject.tag == "PickableGreen")
-        //{
-        //SelectedObj = hit.collider.gameObject;
-        //BallInRange(SelectedObj);
-
-        //If player press F when an object is in range, then the selected object gets destroyed, and a new identical "bullet" object is instantiated as a child of PlayerShootingHolder
-        //if (Input.GetKeyDown(KeyCode.F))
-        //{
-        // Debug.Log("Fpressed");
-        //}
-
-        //}
-
-
-        //} else //Let the ball resume their original color when not hit by raycast
-        //{
-        //    if (SelectedObj != null)
-        //    {
-        //        if (SelectedObj.tag == "PickableRed")
-        //        {
-        //            SelectedObj.GetComponent<Renderer>().material.color = Color.red;
-        //       }
-        //       if (SelectedObj.tag == "PickableCyan")
-        //       {
-        //           SelectedObj.GetComponent<Renderer>().material.color = Color.cyan;
-        //      }
-        //      if (SelectedObj.tag == "PickableGreen")
-        //       {
-        //            SelectedObj.GetComponent<Renderer>().material.color = Color.green;
-        //        }
-
-        //        //Make the pickup notification invisible again
-        //        GameObject pickupNoti = GameObject.Find("PickUp");
-        //        pickupNoti.GetComponent<UnityEngine.UI.Text>().text = null;
-        //
-        //       //set the selected object back to null
-        //        SelectedObj = null;
-        //   }
-        //}
     }
 
     void BallInRange(GameObject selectedBall)
     {
         string ballColor = null;
-        if (selectedBall.tag == "PickableRed")
+        if (selectedBall.GetComponent<Renderer>().material.color == Color.red)
         {
             ballColor = "Red";
         }
-        if (selectedBall.tag == "PickableCyan")
+        if (selectedBall.GetComponent<Renderer>().material.color == Color.cyan)
         {
             ballColor = "Blue";
         }
-        if (selectedBall.tag == "PickableGreen")
+        if (selectedBall.GetComponent<Renderer>().material.color == Color.green)
         {
             ballColor = "Green";
         }
@@ -139,7 +84,7 @@ public class BulletInteraction : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if (col.gameObject.CompareTag("PickableRed") || col.gameObject.CompareTag("PickableGreen") || col.gameObject.CompareTag("PickableCyan"))
+        if (col.gameObject.CompareTag("PickableRed") || col.gameObject.CompareTag("PickableGreen") || col.gameObject.CompareTag("PickableCyan") || col.gameObject.CompareTag("EnemyBall"))
         {
             //Debug.Log(col.gameObject.tag);
             SelectedObj = col.gameObject;
@@ -149,7 +94,7 @@ public class BulletInteraction : MonoBehaviour
 
     private void OnTriggerExit(Collider col)
     {
-        if (col.gameObject.CompareTag("PickableRed") || col.gameObject.CompareTag("PickableGreen") || col.gameObject.CompareTag("PickableCyan"))
+        if (col.gameObject.CompareTag("PickableRed") || col.gameObject.CompareTag("PickableGreen") || col.gameObject.CompareTag("PickableCyan") || col.gameObject.CompareTag("EnemyBall"))
         {
             SelectedObj = null;
             GameObject pickupNoti = GameObject.Find("PickUp");

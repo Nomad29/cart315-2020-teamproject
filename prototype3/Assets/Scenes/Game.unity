@@ -2238,7 +2238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ball_Emitter: {fileID: 1722614097}
   Ball: {fileID: 62524926580265176, guid: 7d17211794903b54c8c68b3a27785c9f, type: 3}
-  Ball_Forward_Force: 1700
+  Ball_Forward_Force: 2000
   numberOfObjects: 1
 --- !u!1 &1415331447 stripped
 GameObject:
@@ -5586,8 +5586,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9010383, y: 1.6491405, z: 0.6345558}
-  m_Center: {x: 0.0026042645, y: 0.8147773, z: 0.009616672}
+  m_Size: {x: 0.6335868, y: 1.6491405, z: 0.4601287}
+  m_Center: {x: 0.009443128, y: 0.8147773, z: 0.09765581}
 --- !u!65 &1738935448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5599,8 +5599,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9010383, y: 1.6491405, z: 0.6345558}
-  m_Center: {x: 0.0026042645, y: 0.8147773, z: 0.009616672}
+  m_Size: {x: 0.6351553, y: 1.5182451, z: 0.46652734}
+  m_Center: {x: 0.010099805, y: 0.7493296, z: 0.09363086}
 --- !u!4 &1738935453 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 539745478100655087, guid: bd6ee82c5e06b3f4f86113cbf8261ae1,
@@ -5863,6 +5863,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: barrier
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 8180916652d6a644fb056c1fbf1fa5ef,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8180916652d6a644fb056c1fbf1fa5ef, type: 3}
@@ -6421,8 +6426,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2115395676}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.009999964, y: 0.44, z: 1.27}
-  m_LocalScale: {x: 1.1599835, y: 2.3374581, z: 2.0381012}
+  m_LocalPosition: {x: 0.009999964, y: 1.04, z: 1.64}
+  m_LocalScale: {x: 1.1599835, y: 6.83987, z: 2.5739365}
   m_Children: []
   m_Father: {fileID: 1738935453}
   m_RootOrder: 26
