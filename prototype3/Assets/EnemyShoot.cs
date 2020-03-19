@@ -48,7 +48,7 @@ public class EnemyShoot : MonoBehaviour
         colors[2] = Color.green;
 
         // Invokes the shoot function at interval of 7-10 seconds and repeated afterward
-        InvokeRepeating("Shoot", Random.Range(7.0f, 10.0f), Random.Range(7.0f, 10.0f));
+        InvokeRepeating("Shoot", Random.Range(2.0f, 4.0f), Random.Range(2.0f, 4.0f));
     }
 
     // Update is called once per frame
@@ -56,38 +56,38 @@ public class EnemyShoot : MonoBehaviour
     {
     }
 
-    public void ChangeColor()
+    public void ChangeColor(GameObject emittedBall)
     {
         // Gets the enemy ball material and sets it to a random choice of colors among the color defined above in void Start()
-        EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color = colors[Random.Range(0, colors.Length)];
+        emittedBall.gameObject.GetComponent<Renderer>().material.color = colors[Random.Range(0, colors.Length)];
 
-        Debug.Log("Ball color changed");
+        //Debug.Log("Ball color changed");
 
         // Sets here what happens when the enemy ball is cyan
-        if (EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.cyan)
+        if (emittedBall.gameObject.GetComponent<Renderer>().material.color == Color.cyan)
         {
             // Changes the enemy's eye to cyan
             EnemyEye.gameObject.GetComponent<Renderer>().material.color = cyan;
 
-            Debug.Log("Turret eye changed cyan");
+            //Debug.Log("Turret eye changed cyan");
         }
 
         // Sets here what happens when the enemy ball is red
-        else if (EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.red)
+        else if (emittedBall.gameObject.GetComponent<Renderer>().material.color == Color.red)
         {
             // Changes the enemy's eye to red
             EnemyEye.gameObject.GetComponent<Renderer>().material.color = red;
 
-            Debug.Log("Turret eye changed red");
+            //Debug.Log("Turret eye changed red");
         }
 
         // Sets here what happens when the enemy ball is green
-        else if (EnemyBall.gameObject.GetComponent<Renderer>().sharedMaterial.color == Color.green)
+        else if (emittedBall.gameObject.GetComponent<Renderer>().material.color == Color.green)
         {
             // Changes the enemy's eye to green
             EnemyEye.gameObject.GetComponent<Renderer>().material.color = green;
 
-            Debug.Log("Turret eye changed green");
+            //Debug.Log("Turret eye changed green");
         }
     }
 
@@ -100,7 +100,7 @@ public class EnemyShoot : MonoBehaviour
             GameObject Temporary_Ball_Handler;
 
             Temporary_Ball_Handler = Instantiate(Ball, Ball_Emitter.transform.position, Ball_Emitter.transform.rotation) as GameObject;
-            Debug.Log("Enemy Ball shooted");
+            //Debug.Log("Enemy Ball shooted");
 
             // Sometimes Balls may appear rotated incorrectly due to the way its pivot was set from the original modeling package.
             Temporary_Ball_Handler.transform.Rotate(Vector3.left* 90);
@@ -114,10 +114,15 @@ public class EnemyShoot : MonoBehaviour
             Temporary_RigidBody.AddForce(transform.forward* Ball_Forward_Force);
 
             // Basic Clean Up, set the Balls to self destruct after 7 Seconds. Can be bigger number if used as a projectile and not a boost.
-            Destroy(Temporary_Ball_Handler, 7f);
+            Destroy(Temporary_Ball_Handler, 30f);
 
             // Calls the change color function above at each shooting
-            ChangeColor();
+            ChangeColor(Temporary_Ball_Handler);
+
+            //Inherit the last ball color that enemy shoot into vulnerability color
+            GameObject theVulnerabilityScriptLoc = GameObject.Find("Camera");
+            VulnerabilityColor lastballColor = theVulnerabilityScriptLoc.GetComponent<VulnerabilityColor>();
+            lastballColor.vulnerabilityColor = Temporary_Ball_Handler.gameObject.GetComponent<Renderer>().material.color;
         }
     }
 }

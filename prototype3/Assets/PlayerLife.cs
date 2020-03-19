@@ -36,9 +36,12 @@ public class PlayerLife : MonoBehaviour
         // If the enemy ball touched the player
         if (other.gameObject == PlayerAvatar)
         {
-            Debug.Log("Player dead");
-            // Add the death counter of the player
-            PlayerLifeCount++;
+           if (this.gameObject.tag == "EnemyBall")
+            {
+                Debug.Log("Player dead");
+                // Add the death counter of the player
+                PlayerLifeCount++;
+            }
         }
     }
 

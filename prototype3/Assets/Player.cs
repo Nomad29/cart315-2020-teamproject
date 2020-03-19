@@ -14,7 +14,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public GameObject Room;
-    public float speed = 7;
+    public float speed = 10;
     public Vector3 jump;
     public float jumpForce = 2.0f;
 
@@ -25,6 +25,8 @@ public class Player : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         jump = new Vector3(0.0f, 2.0f, 0.0f);
+
+        Physics.gravity = new Vector3(0, -1.0F, 0);
     }
 
     // Update is called once per frame

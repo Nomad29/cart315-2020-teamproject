@@ -9,6 +9,9 @@ TagManager:
   - EnemyBall
   - Enemy
   - PlayerBall
+  - PickableRed
+  - PickableCyan
+  - PickableGreen
   layers:
   - Default
   - TransparentFX

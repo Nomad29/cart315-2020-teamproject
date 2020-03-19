@@ -32,32 +32,52 @@ public class EnemyLife : MonoBehaviour
         if (EnemyLifeCount == 0)
         {
             // Start a delay function of 0.5 second
+            
             StartCoroutine(Wait());
         }
     }
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject == Enemy)
+        if (other.gameObject.CompareTag("PlayerBall"))
         {
-            // Apply new red material to the two parts of the turret enemy
-            TurretTop.gameObject.GetComponent<Renderer>().material = newMaterial;
-            TurretBottom.gameObject.GetComponent<Renderer>().material = newMaterial;
+           
+            //First, retrieve this playerball's color
+            Color PlayerColor = other.gameObject.GetComponent<Renderer>().material.color;
 
-            Debug.Log("EnemyLife -1");
+            //Then retrieve the turret's vulnerable color according to the UI indicator
+            GameObject EnemyVulnerabilityIndicator = GameObject.Find("Color");
+            Color EnemyVulnerability = EnemyVulnerabilityIndicator.GetComponent<UnityEngine.UI.Text>().color;
 
-            // Start a delay function of 0.2 second
-            StartCoroutine(Reuse());
+            //if the colors match, -1 life
+            if (PlayerColor == EnemyVulnerability)
+            {
+                EnemyLifeCount--;
 
-            // Enemy -1 life if touched by one player's ball
-            EnemyLifeCount--;
+                // Apply new red material to the two parts of the turret enemy
+                TurretTop.gameObject.GetComponent<Renderer>().material = newMaterial;
+                TurretBottom.gameObject.GetComponent<Renderer>().material = newMaterial;
+
+                Debug.Log("EnemyLife -1");
+
+                // Start a delay function of 0.2 second
+                StartCoroutine(Reuse());
+            }
+
+            //Destroy the playerball
+            Destroy(other.gameObject);
+
         }
     }
 
     public IEnumerator Reuse()
     {
+        print("turret return");
         // Start a delay of 0.2 second
         yield return new WaitForSeconds(0.2f);
+
+
+        print("turret return 2s");
 
         // After delay, gives the enemy its normal material
         TurretTop.gameObject.GetComponent<Renderer>().material = oldMaterial;
@@ -66,9 +86,11 @@ public class EnemyLife : MonoBehaviour
 
     public IEnumerator Wait()
     {
+        print("gamewon");
         // Start a delay of 0.5 second
         yield return new WaitForSeconds(0.5f);
         EnemyLifeCount = 5;
+        print("gamewon2");
         // Win screen after 5 hits by the player
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
