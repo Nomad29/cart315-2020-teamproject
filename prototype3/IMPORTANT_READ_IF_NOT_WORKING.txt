@@ -1,0 +1,6 @@
+
+After experiencing some difficulties with the metadata of our project and GitHub, we are giving you a Google Drive link to download the project with the metadata not removed if you are not able to open the project after pulling it from GitHub.
+
+The Google Drive link to our prototype 3:
+
+https://drive.google.com/open?id=1HJGFrjVF-w57K-nTdqfaUPJeIAQl58kR

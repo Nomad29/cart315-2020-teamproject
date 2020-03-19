@@ -26,7 +26,7 @@ public class PlayerLife : MonoBehaviour
         // If the player is touched one time
         if (PlayerLifeCount == 1)
         {
-            // Start a delay function of 0.5 second
+            // Start a delay function of 0.3 second
             StartCoroutine(Wait());
         }
     }
@@ -47,8 +47,8 @@ public class PlayerLife : MonoBehaviour
 
     public IEnumerator Wait()
     {
-        // Start a delay of 0.5 second
-        yield return new WaitForSeconds(0.5f);
+        // Start a delay of 0.3 second
+        yield return new WaitForSeconds(0.3f);
 
         // Game Over screen after being touched one time by the enemy ball
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);

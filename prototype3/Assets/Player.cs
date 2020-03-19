@@ -49,6 +49,16 @@ public class Player : MonoBehaviour
             z = -1 * Time.deltaTime * speed;
         }
 
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            x = -1 * Time.deltaTime * speed;
+        }
+
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            x = -1 * Time.deltaTime * speed;
+        }
+
         transform.Translate(x, 0, z);
 
     }
@@ -62,16 +72,6 @@ public class Player : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 rb.AddForce(jump * jumpForce, ForceMode.Impulse);
-            }
-
-            if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-            {
-                transform.Rotate(0, -150 * Time.deltaTime, 0);
-            }
-
-            if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-            {
-                transform.Rotate(0, 150 * Time.deltaTime, 0);
             }
 
             this.gameObject.transform.Rotate(Input.mousePosition);

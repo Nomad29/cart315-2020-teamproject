@@ -1,35 +1,34 @@
 ScriptsOnlyBuild:
   usedScripts:
+    Assembly-CSharp-firstpass.dll:
+    - UnityStandardAssets.Characters.FirstPerson.FirstPersonController
     Assembly-CSharp.dll:
-    - Boost
-    - CameraGravity
+    - BulletCollide
+    - BulletInteraction
     - CharacterSkinController
+    - EnemyLife
+    - EnemyShoot
     - GameOver
-    - ItemGravity
+    - LifeCounter
+    - LookAtPlayer
     - Menu
     - MovementInput
-    - Player
-    - PlayerPlaceholder
-    - Timer
+    - PlayerLife
+    - PlayerShoot
+    - StageDeath
+    - VulnerabilityColor
+    - Win
     Unity.TextMeshPro.dll:
     - TMPro.TMP_FontAsset
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
     - TMPro.TextMeshProUGUI
-    UnityEditor.Graphs.dll:
-    - UnityEditor.Graphs.AnimationBlendTree.Graph
-    - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.Graph
-    - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
-    - UnityEditor.TestTools.TestRunner.TestListCacheData
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
-    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
@@ -56,13 +55,21 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
+    - Class: 64
+      Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 89
+      Script: {instanceID: 0}
+    - Class: 90
       Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
@@ -73,42 +80,62 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9742}
+      Script: {instanceID: 9758}
     - Class: 114
-      Script: {instanceID: 9812}
+      Script: {instanceID: 9828}
     - Class: 114
-      Script: {instanceID: 9912}
+      Script: {instanceID: 9854}
     - Class: 114
-      Script: {instanceID: 9964}
+      Script: {instanceID: 9914}
     - Class: 114
-      Script: {instanceID: 10356}
+      Script: {instanceID: 9924}
     - Class: 114
-      Script: {instanceID: 10412}
+      Script: {instanceID: 9932}
     - Class: 114
-      Script: {instanceID: 10418}
+      Script: {instanceID: 9984}
     - Class: 114
-      Script: {instanceID: 10484}
+      Script: {instanceID: 10130}
     - Class: 114
-      Script: {instanceID: 11268}
+      Script: {instanceID: 10378}
     - Class: 114
-      Script: {instanceID: 11476}
+      Script: {instanceID: 10438}
     - Class: 114
-      Script: {instanceID: 11514}
+      Script: {instanceID: 10504}
     - Class: 114
-      Script: {instanceID: 11588}
+      Script: {instanceID: 10698}
     - Class: 114
-      Script: {instanceID: 11646}
+      Script: {instanceID: 10724}
+    - Class: 114
+      Script: {instanceID: 10878}
+    - Class: 114
+      Script: {instanceID: 11060}
+    - Class: 114
+      Script: {instanceID: 11282}
+    - Class: 114
+      Script: {instanceID: 11300}
+    - Class: 114
+      Script: {instanceID: 11674}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 124
       Script: {instanceID: 0}
     - Class: 128
       Script: {instanceID: 0}
+    - Class: 134
+      Script: {instanceID: 0}
     - Class: 135
+      Script: {instanceID: 0}
+    - Class: 136
       Script: {instanceID: 0}
     - Class: 137
       Script: {instanceID: 0}
     - Class: 143
       Script: {instanceID: 0}
     - Class: 157
+      Script: {instanceID: 0}
+    - Class: 212
+      Script: {instanceID: 0}
+    - Class: 213
       Script: {instanceID: 0}
     - Class: 222
       Script: {instanceID: 0}
@@ -138,23 +165,21 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9742}
+      Script: {instanceID: 9758}
     - Class: 114
-      Script: {instanceID: 9958}
+      Script: {instanceID: 9978}
     - Class: 114
-      Script: {instanceID: 10356}
+      Script: {instanceID: 10378}
     - Class: 114
-      Script: {instanceID: 10774}
+      Script: {instanceID: 11028}
     - Class: 114
-      Script: {instanceID: 11002}
+      Script: {instanceID: 11232}
     - Class: 114
-      Script: {instanceID: 11202}
+      Script: {instanceID: 11300}
     - Class: 114
-      Script: {instanceID: 11268}
+      Script: {instanceID: 11640}
     - Class: 114
-      Script: {instanceID: 11612}
-    - Class: 114
-      Script: {instanceID: 11646}
+      Script: {instanceID: 11674}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -193,29 +218,27 @@ ScriptsOnlyBuild:
     - Class: 109
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9742}
+      Script: {instanceID: 9758}
     - Class: 114
-      Script: {instanceID: 9958}
+      Script: {instanceID: 9978}
     - Class: 114
-      Script: {instanceID: 10356}
+      Script: {instanceID: 10378}
     - Class: 114
-      Script: {instanceID: 10386}
+      Script: {instanceID: 10408}
     - Class: 114
-      Script: {instanceID: 10558}
+      Script: {instanceID: 10578}
     - Class: 114
-      Script: {instanceID: 10774}
+      Script: {instanceID: 11028}
     - Class: 114
-      Script: {instanceID: 11002}
+      Script: {instanceID: 11044}
     - Class: 114
-      Script: {instanceID: 11018}
+      Script: {instanceID: 11232}
     - Class: 114
-      Script: {instanceID: 11202}
+      Script: {instanceID: 11300}
     - Class: 114
-      Script: {instanceID: 11268}
+      Script: {instanceID: 11464}
     - Class: 114
-      Script: {instanceID: 11432}
-    - Class: 114
-      Script: {instanceID: 11646}
+      Script: {instanceID: 11674}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -250,17 +273,21 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 9742}
+      Script: {instanceID: 9758}
     - Class: 114
-      Script: {instanceID: 9958}
+      Script: {instanceID: 9978}
     - Class: 114
-      Script: {instanceID: 10558}
+      Script: {instanceID: 10378}
     - Class: 114
-      Script: {instanceID: 11002}
+      Script: {instanceID: 11028}
     - Class: 114
-      Script: {instanceID: 11202}
+      Script: {instanceID: 11146}
     - Class: 114
-      Script: {instanceID: 11268}
+      Script: {instanceID: 11232}
+    - Class: 114
+      Script: {instanceID: 11300}
+    - Class: 114
+      Script: {instanceID: 11674}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -320,10 +347,10 @@ ScriptsOnlyBuild:
     className: TMP_Dropdown
   - hash:
       serializedVersion: 2
-      Hash: 14e97b0654b13fe4d1a503aa1036505e
+      Hash: ff369d2b7ac1a51453b69b3cc58d66ec
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Boost
+    className: PlayerShoot
   - hash:
       serializedVersion: 2
       Hash: 3748fbad2d474a315bda516b8363a0c5
@@ -380,10 +407,22 @@ ScriptsOnlyBuild:
     className: ActivationTrack
   - hash:
       serializedVersion: 2
+      Hash: 1e57484dc77693e95e36e48070816d1d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BulletInteraction
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: 
     className: EventSystemChecker
+  - hash:
+      serializedVersion: 2
+      Hash: 26fe8d64d18a6adb64611d959c11fe05
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LookAtPlayer
   - hash:
       serializedVersion: 2
       Hash: 72712369a7c681ad84fc255a5ec0b333
@@ -510,6 +549,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: PhysicsRaycaster
+  - hash:
+      serializedVersion: 2
+      Hash: c9997c3adf0f5c6cf3b165cf75020e07
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: VulnerabilityColor
   - hash:
       serializedVersion: 2
       Hash: e540a01426f9ad59088593bf72bcd255
@@ -644,12 +689,6 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
-      Hash: 50a18517cd673fe7a821b5e84c1706eb
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ItemGravity
-  - hash:
-      serializedVersion: 2
       Hash: ba58bb04e7cbbdeb111979d3a2a16792
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -680,10 +719,10 @@ ScriptsOnlyBuild:
     className: CameraSwitch
   - hash:
       serializedVersion: 2
-      Hash: 19c04a376a24ae05dcf093a3341face7
+      Hash: 2f5c59b2aad3bda9d2d8f2107f6bc987
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: Timer
+    className: LifeCounter
   - hash:
       serializedVersion: 2
       Hash: 0574135745ea880aa1c1be2f2057ab89
@@ -812,6 +851,12 @@ ScriptsOnlyBuild:
     className: LandingGear
   - hash:
       serializedVersion: 2
+      Hash: cf6e53fa4adef5f54d23e5bba979e88e
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: StageDeath
+  - hash:
+      serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.CrossPlatformInput
@@ -828,6 +873,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Utility
     className: ObjectResetter
+  - hash:
+      serializedVersion: 2
+      Hash: 8963c61808a7dfbe47c5a76e2e433dbf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyShoot
   - hash:
       serializedVersion: 2
       Hash: 9df954eca51e9f2b95915ae2918e4258
@@ -888,6 +939,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Cameras
     className: FreeLookCam
+  - hash:
+      serializedVersion: 2
+      Hash: 93511d01c4e57b3879da637f3b179d84
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: EnemyLife
   - hash:
       serializedVersion: 2
       Hash: 2294ba4929e515b4b46046eff1f6b057
@@ -998,6 +1055,12 @@ ScriptsOnlyBuild:
     className: HandHeldCam
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: BulletCollide
+  - hash:
+      serializedVersion: 2
       Hash: b294ba655397a2a6c58cddd17cea876c
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Vehicles.Aeroplane
@@ -1020,6 +1083,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Utility
     className: DynamicShadowSettings
+  - hash:
+      serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Win
   - hash:
       serializedVersion: 2
       Hash: 428923bc6e394f67d7e43c7fdc2bc412
@@ -1074,6 +1143,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp-firstpass.dll
     namespaceName: UnityStandardAssets.Vehicles.Aeroplane
     className: AeroplaneUserControl2Axis
+  - hash:
+      serializedVersion: 2
+      Hash: 19a4abe372f4cfe49366ce6fdebf04f2
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerLife
   - hash:
       serializedVersion: 2
       Hash: b9048d3760274b9fd3dc94b75b3d0f96
@@ -1166,16 +1241,10 @@ ScriptsOnlyBuild:
     className: WaterTile
   - hash:
       serializedVersion: 2
-      Hash: 66c9197090e804d3484cd923d45c43da
+      Hash: eef6c8b6f996ec969f5897640235dc7e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Player
-  - hash:
-      serializedVersion: 2
-      Hash: 1ef9ccd18e6597efae7d4bb5e0d780df
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: PlayerPlaceholder
   - hash:
       serializedVersion: 2
       Hash: df434544c9f7b33d1cc7e635b180d279
@@ -1212,12 +1281,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: Outline
-  - hash:
-      serializedVersion: 2
-      Hash: 7f7b4466a9d354981749098995ebe459
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: CameraGravity
   - hash:
       serializedVersion: 2
       Hash: a63fc1a3b035e5a0b5839cd7f7b3086e
@@ -1302,4 +1365,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/Game.unity
   - Assets/Scenes/Win.unity
   - Assets/Scenes/GameOver.unity
-  playerPath: "D:/Users/alexa/Desktop/\xC9tudes/Universit\xE9/Concordia/Winter_2020/CART315/cart315-2020/prototype3/Builds/Prototype03.exe"
+  playerPath: "D:/Users/alexa/Desktop/\xC9tudes/Universit\xE9/Concordia/Winter_2020/CART315/cart315-2020-teamproject/prototype3/Builds/Prototype03.exe"

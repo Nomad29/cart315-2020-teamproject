@@ -47,8 +47,8 @@ public class EnemyShoot : MonoBehaviour
         colors[1] = Color.red;
         colors[2] = Color.green;
 
-        // Invokes the shoot function at interval of 7-10 seconds and repeated afterward
-        InvokeRepeating("Shoot", Random.Range(1.0f, 2.0f), Random.Range(1.0f, 2.0f));
+        // Invokes the shoot function at interval of 3-5 seconds and repeated afterward
+        InvokeRepeating("Shoot", Random.Range(3.0f, 5.0f), Random.Range(3.0f, 5.0f));
     }
 
     // Update is called once per frame
@@ -113,8 +113,8 @@ public class EnemyShoot : MonoBehaviour
             // Tell the Ball to be "pushed" forward by an amount set by Ball_Forward_Force.
             Temporary_RigidBody.AddForce(transform.forward* Ball_Forward_Force);
 
-            // Basic Clean Up, set the Balls to self destruct after 7 Seconds. Can be bigger number if used as a projectile and not a boost.
-            Destroy(Temporary_Ball_Handler, 30f);
+            // Basic Clean Up, set the Balls to self destruct after 15 Seconds. 
+            Destroy(Temporary_Ball_Handler, 15f);
 
             // Calls the change color function above at each shooting
             ChangeColor(Temporary_Ball_Handler);

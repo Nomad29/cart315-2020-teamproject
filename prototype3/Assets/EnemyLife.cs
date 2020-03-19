@@ -46,7 +46,8 @@ public class EnemyLife : MonoBehaviour
             Color PlayerColor = other.gameObject.GetComponent<Renderer>().material.color;
 
             //Then retrieve the turret's vulnerable color according to the UI indicator
-            GameObject EnemyVulnerabilityIndicator = GameObject.Find("Color");
+            // Changed to ColorIndicator since another variable in our prototype was named Color in another and made the following lines useless
+            GameObject EnemyVulnerabilityIndicator = GameObject.Find("ColorIndicator");
             Color EnemyVulnerability = EnemyVulnerabilityIndicator.GetComponent<UnityEngine.UI.Text>().color;
 
             //if the colors match, -1 life
@@ -62,10 +63,11 @@ public class EnemyLife : MonoBehaviour
 
                 // Start a delay function of 0.2 second
                 StartCoroutine(Reuse());
-            }
 
-            //Destroy the playerball
-            Destroy(other.gameObject);
+                //Destroy the playerball
+                // Moves the Destroy() function here so that if the player's ball does not match the enemy's vulnerability, it bounces back but if it matches, it gets destroyed
+                Destroy(other.gameObject);
+            }
 
         }
     }

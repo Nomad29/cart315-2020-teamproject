@@ -233,7 +233,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -109}
+  m_AnchoredPosition: {x: 0, y: -109.6}
   m_SizeDelta: {x: 650, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &80769941
@@ -1204,7 +1204,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -316, y: -41}
+  m_AnchoredPosition: {x: -316, y: -39.399994}
   m_SizeDelta: {x: 650, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1063327321
@@ -1359,7 +1359,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 326.00012, y: -41}
+  m_AnchoredPosition: {x: 326.00012, y: -39.4}
   m_SizeDelta: {x: 650, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1115582510
@@ -2228,8 +2228,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Grab the balls from the turret and shoot them back at it 5 times in order
-    to win while being careful as to which colored ball to shoot back at it.
+  m_text: Grab quickly the balls from the turret and shoot them back at it 5 times
+    in order to win while being careful as to which colored ball to shoot back at
+    it.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2298,10 +2299,10 @@ MonoBehaviour:
   m_margin: {x: 33.13559, y: 0, z: 34.410034, w: 0}
   m_textInfo:
     textComponent: {fileID: 1614096527}
-    characterCount: 146
+    characterCount: 154
     spriteCount: 0
-    spaceCount: 30
-    wordCount: 31
+    spaceCount: 31
+    wordCount: 32
     linkCount: 0
     lineCount: 3
     pageCount: 1
